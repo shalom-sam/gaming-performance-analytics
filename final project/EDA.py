@@ -2,7 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# dataset
+
 df = pd.read_csv(r"C:\Users\Shalo\OneDrive\Desktop\final project\player_stats.csv")
 
 print(df.head())
@@ -37,22 +37,22 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
-# Load data
+
 df = pd.read_csv(r"C:\Users\Shalo\OneDrive\Desktop\final project\player_stats.csv")
 
-# REMOVE text column
+
 if "Player_ID" in df.columns:
     df = df.drop("Player_ID", axis=1)
 
-# Encode Rank (text → number)
+
 encoder = LabelEncoder()
 df["Rank"] = encoder.fit_transform(df["Rank"])
 
-# Split features and target
+
 X = df.drop("Rank", axis=1)
 y = df["Rank"]
 
-# Convert EVERYTHING to numeric float
+
 X = X.apply(pd.to_numeric)
 X = X.astype("float32")
 y = y.astype("float32")
@@ -138,4 +138,5 @@ print(prediction)
 
 
 predicted_class = prediction.argmax()
+
 print("Predicted Rank:", predicted_class)
